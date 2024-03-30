@@ -1,11 +1,11 @@
 var contador = 1;
+var id_aux = 0;
 
 function cadastrar() {
     let nome = window.document.getElementById("nome").value;
     let quantidade = window.document.getElementById("quantidade").value;
     let preco = window.document.getElementById("preco").value;
     let classe = window.document.getElementById("classe").value;
-    
 
     if (nome != "") {
         let html = "";
@@ -39,6 +39,9 @@ function cadastrar() {
 }
 
 function editar(id){
+    window.document.getElementById("botao_cadastrar").style.display = "none";
+    window.document.getElementById("botao_editar").style.display = "block";
+
     let nome = window.document.getElementById("nome");
     let quantidade = window.document.getElementById("quantidade");
     let preco = window.document.getElementById("preco");
@@ -48,4 +51,37 @@ function editar(id){
     quantidade.value = window.document.getElementById(`qtd_${id}`).innerHTML;
     preco.value = window.document.getElementById(`preco_${id}`).innerHTML;
     classe.value = window.document.getElementById(`classe_${id}`).innerHTML;
+    id_aux = id;
+}
+
+function gravarEdicao(){
+    id = id_aux;
+
+    let nome = window.document.getElementById("nome");
+    let quantidade = window.document.getElementById("quantidade");
+    let preco = window.document.getElementById("preco");
+    let classe = window.document.getElementById("classe");
+
+    if (nome != "") {
+        window.document.getElementById(`nome_${id}`).innerHTML = nome.value;
+        window.document.getElementById(`qtd_${id}`).innerHTML = quantidade.value;
+        window.document.getElementById(`preco_${id}`).innerHTML = preco.value;
+        window.document.getElementById(`classe_${id}`).innerHTML = classe.value;
+
+        span = window.document.getElementById("nome_erro");
+        span.innerHTML = "";
+        nome = window.document.getElementById("nome").value = '';
+        quantidade = window.document.getElementById("quantidade").value = '';
+        preco = window.document.getElementById("preco").value = '';
+        classe = window.document.getElementById("classe").value = '';
+
+        window.document.getElementById("botao_cadastrar").style.display = "block";
+        window.document.getElementById("botao_editar").style.display = "none";
+
+        id_aux = 0;
+    } else {
+        span = window.document.getElementById("nome_erro");
+        span.innerHTML = "O nome é obrigatório";
+        span.style.color = "red";
+    }
 }

@@ -118,3 +118,7 @@ table {
   border: none;
   cursor: pointer;
 }
+
+#botao_editar{
+  display: none;
+}
